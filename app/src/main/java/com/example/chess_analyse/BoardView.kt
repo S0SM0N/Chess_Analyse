@@ -59,7 +59,7 @@ fun BoardView(
     val best = remember(bestMove) { squaresOf(bestMove) }
 
     BoxWithConstraints(modifier.fillMaxWidth().aspectRatio(1f)) {
-        val cell = maxWidth / 8
+        val cell = this.maxWidth / 8
         val fontSize = with(LocalDensity.current) { (cell * 0.75f).toSp() }
         Column {
             for (r in 0 until 8) {

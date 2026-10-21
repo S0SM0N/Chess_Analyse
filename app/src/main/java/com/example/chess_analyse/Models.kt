@@ -39,4 +39,6 @@ data class UiState(
     val analysis: Analysis? = null,
     val analyzing: Boolean = false,
     val engineError: String? = null,
+    val isDarkMode: Boolean = false,
+    val showSettings: Boolean = false,
 )

@@ -21,7 +21,10 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     private var analysisCounter = 0
 
     private val _state = MutableStateFlow(
-        UiState(username = prefs.getString("username", "") ?: "")
+        UiState(
+            username = prefs.getString("username", "") ?: "",
+            isDarkMode = prefs.getBoolean("dark_mode", false),
+        )
     )
     val state: StateFlow<UiState> = _state.asStateFlow()
 
@@ -30,6 +33,15 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     fun setUsername(name: String) = _state.update { it.copy(username = name) }
+
+    fun setDarkMode(enabled: Boolean) {
+        prefs.edit().putBoolean("dark_mode", enabled).apply()
+        _state.update { it.copy(isDarkMode = enabled) }
+    }
+
+    fun toggleSettings(show: Boolean) {
+        _state.update { it.copy(showSettings = show) }
+    }
 
     // ---------- Partien laden ----------
 
